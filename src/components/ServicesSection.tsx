@@ -96,7 +96,7 @@ const services = [
               )}
               {s.isForm ? (
                 <button
-                  onClick={() => setShowForm(true)}
+                  onClick={() => { setFormSource((s as any).formSource || 'plan'); setShowForm(true); }}
                   className="w-full bg-secondary text-secondary-foreground font-heading font-semibold py-3 rounded-xl hover:bg-muted transition-colors text-sm"
                 >
                   {s.cta}
