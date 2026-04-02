@@ -28,7 +28,7 @@ const AboutSection = () => {
           </p>
 
           <p className="text-muted-foreground text-lg mb-8">
-            Przez ponad 3 lata pracy pomogłem dziesiątkom osób:
+            Przez ponad 3 lata treningu na siłowni pomogłem dziesiątkom osób:
           </p>
 
           <div className="flex flex-col items-center gap-3 mb-8">

@@ -26,7 +26,7 @@ const HeroSection = () => {
             </h2>
 
             <p className="text-muted-foreground text-lg mb-4 max-w-lg">
-              Treningi personalne to moja pasja od ponad 3 lat.
+              Trenuję na siłowni od ponad 3 lat.
               Pomagam budować sylwetkę, siłę i pewność siebie – bez kontuzji i bez ściemy.
             </p>
 
