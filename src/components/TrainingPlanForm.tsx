@@ -6,7 +6,7 @@ import { toast } from '@/hooks/use-toast';
 
 interface Props {
   onClose: () => void;
-  source?: string;
+  source?: 'plan' | 'coaching' | 'hero' | 'booking' | 'online';
 }
 
 const TrainingPlanForm = ({ onClose, source = 'plan' }: Props) => {
