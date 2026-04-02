@@ -120,7 +120,7 @@ const services = [
         </div>
       </div>
 
-      {showForm && <TrainingPlanForm onClose={() => setShowForm(false)} />}
+      {showForm && <TrainingPlanForm source={formSource} onClose={() => setShowForm(false)} />}
     </section>
   );
 };
