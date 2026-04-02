@@ -12,7 +12,7 @@ const certificates = [
   { image: cert2, title: 'Certyfikat – Anatomy & Physiology (REPs Polska)' },
   { image: cert3, title: 'Certyfikat – Układanie planu treningowego cz. 1 (PLTP)' },
   { image: cert4, title: 'Certyfikat – Układanie planu treningowego cz. 2 (PLTP)' },
-   { image: cert4, title: 'Certyfikat – Układanie planu treningowego cz. 2 (PLTP)' },
+   { image: cert5, title: 'Certyfikat – Układanie planu treningowego cz. 2 (PLTP)' },
 ];
 
 const CertificatesSection = () => {
