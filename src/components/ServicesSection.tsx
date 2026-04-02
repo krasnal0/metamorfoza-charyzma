@@ -33,14 +33,15 @@ const services = [
     description: 'Pełne prowadzenie online — treningi, dieta, ewaluacja.',
     features: ['Dostępność 24/7', 'Wsparcie techniki', 'Analiza progresu', 'Darmowy plan treningowy'],
     price: '400 zł',
-    cta: 'Umów rozmowę',
-    ctaHref: 'https://calendly.com/d-owczarek2007/30min',
-    external: true,
+    cta: 'Wypełnij formularz',
+    isForm: true,
+    formSource: 'coaching',
     highlight: false,
   },
 ];
 
 const ServicesSection = () => {
+  const [formSource, setFormSource] = useState<'plan' | 'coaching'>('plan');
   const [showForm, setShowForm] = useState(false);
 
   return (
@@ -96,7 +97,7 @@ const ServicesSection = () => {
               )}
               {s.isForm ? (
                 <button
-                  onClick={() => setShowForm(true)}
+                  onClick={() => { setFormSource((s as any).formSource || 'plan'); setShowForm(true); }}
                   className="w-full bg-secondary text-secondary-foreground font-heading font-semibold py-3 rounded-xl hover:bg-muted transition-colors text-sm"
                 >
                   {s.cta}
@@ -120,7 +121,7 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {showForm && <TrainingPlanForm onClose={() => setShowForm(false)} />}
+      {showForm && <TrainingPlanForm source={formSource} onClose={() => setShowForm(false)} />}
     </section>
   );
 };

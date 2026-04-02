@@ -7,7 +7,7 @@ export interface Lead {
   weight?: string;
   height?: string;
   equipment?: string;
-  source: 'hero' | 'plan' | 'booking' | 'online';
+  source: 'hero' | 'plan' | 'booking' | 'online' | 'coaching';
   status: 'Nowy' | 'Skontaktowany' | 'Zakończony';
   createdAt: Date;
 }
