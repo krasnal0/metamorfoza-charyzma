@@ -4,9 +4,10 @@ import { Menu, X, Dumbbell } from 'lucide-react';
 
 const navItems = [
   { label: 'Start', href: '#hero' },
+  { label: 'O mnie', href: '#about' },
   { label: 'Przemiany', href: '#transformations' },
   { label: 'Usługi', href: '#services' },
-  { label: 'Terminarz', href: '#booking' },
+  { label: 'Kontakt', href: '#booking' },
 ];
 
 const Navbar = () => {
@@ -24,7 +25,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <a href="#hero" className="flex items-center gap-2">
           <Dumbbell className="w-7 h-7 text-primary" />
-          <span className="font-heading font-bold text-lg text-foreground">TRENER<span className="text-primary">ŻORY</span></span>
+          <span className="font-heading font-bold text-lg text-foreground">Dominik <span className="text-primary">Owczarek</span></span>
         </a>
 
         <div className="hidden md:flex items-center gap-8">
@@ -33,7 +34,7 @@ const Navbar = () => {
               {item.label}
             </a>
           ))}
-          <a href="#hero" className="bg-gradient-amber text-primary-foreground px-5 py-2 rounded-lg font-heading font-semibold text-sm hover:opacity-90 transition-opacity">
+          <a href="https://calendly.com/d-owczarek2007/30min" target="_blank" rel="noopener noreferrer" className="bg-gradient-amber text-primary-foreground px-5 py-2 rounded-lg font-heading font-semibold text-sm hover:opacity-90 transition-opacity">
             Darmowy Trening
           </a>
         </div>
@@ -57,7 +58,7 @@ const Navbar = () => {
                   {item.label}
                 </a>
               ))}
-              <a href="#hero" onClick={() => setMobileOpen(false)} className="bg-gradient-amber text-primary-foreground px-5 py-3 rounded-lg font-heading font-semibold text-center">
+              <a href="https://calendly.com/d-owczarek2007/30min" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="bg-gradient-amber text-primary-foreground px-5 py-3 rounded-lg font-heading font-semibold text-center">
                 Darmowy Trening
               </a>
             </div>
