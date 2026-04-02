@@ -40,6 +40,7 @@ const services = [
   },
 ];
 
+const ServicesSection = () => {
   const [formSource, setFormSource] = useState<'plan' | 'coaching'>('plan');
   const [showForm, setShowForm] = useState(false);
 
