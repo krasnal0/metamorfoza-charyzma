@@ -9,9 +9,10 @@ const services = [
     title: 'Trening Personalny',
     subtitle: 'Pierwsza sesja GRATIS',
     description: 'Trening 1-na-1 pod pełną kontrolą. Analiza ruchu, korekta techniki, plan progresji.',
-    features: ['Darmowy trening próbny', 'Analiza sylwetki i celów', 'Plan żywieniowy w cenie', 'Wsparcie 24/7 na WhatsApp'],
+    features: ['Darmowy trening próbny', 'Analiza sylwetki i celów', 'Kontakt 24/7'],
     cta: 'Zapisz się na darmowy trening',
-    ctaHref: '#booking',
+    ctaHref: 'https://calendly.com/d-owczarek2007/30min',
+    external: true,
     highlight: true,
   },
   {
@@ -19,7 +20,8 @@ const services = [
     title: 'Plan Treningowy',
     subtitle: 'Spersonalizowany pod Ciebie',
     description: 'Kompletny plan treningowy dopasowany do Twojego sprzętu, celów i poziomu.',
-    features: ['Ankieta dopasowująca', 'Plan na 12 tygodni', 'Instrukcje wideo', 'Korekty co 4 tygodnie'],
+    features: ['Ankieta dopasowująca', 'Plan na 12 tygodni'],
+    price: '100 zł',
     cta: 'Wypełnij ankietę',
     isForm: true,
     highlight: false,
@@ -28,10 +30,12 @@ const services = [
     icon: Monitor,
     title: 'Coaching Online',
     subtitle: 'Trenuj z dowolnego miejsca',
-    description: 'Pełne prowadzenie online — treningi, dieta, ewaluacja co tydzień.',
-    features: ['Videocall co tydzień', 'Codzienny feedback', 'Aplikacja do śledzenia', 'Dostęp do społeczności'],
+    description: 'Pełne prowadzenie online — treningi, dieta, ewaluacja.',
+    features: ['Dostępność 24/7', 'Wsparcie techniki', 'Analiza progresu', 'Darmowy plan treningowy'],
+    price: '400 zł',
     cta: 'Umów rozmowę',
-    ctaHref: '#booking',
+    ctaHref: 'https://calendly.com/d-owczarek2007/30min',
+    external: true,
     highlight: false,
   },
 ];
@@ -77,7 +81,7 @@ const ServicesSection = () => {
               <h3 className="font-heading font-bold text-xl text-foreground mb-1">{s.title}</h3>
               <p className="text-primary text-sm font-semibold mb-3">{s.subtitle}</p>
               <p className="text-muted-foreground text-sm mb-6">{s.description}</p>
-              <div className="space-y-2 mb-8">
+              <div className="space-y-2 mb-4">
                 {s.features.map((f, fi) => (
                   <div key={fi} className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0" />
@@ -85,6 +89,11 @@ const ServicesSection = () => {
                   </div>
                 ))}
               </div>
+              {'price' in s && s.price && (
+                <p className="text-primary font-heading font-bold text-xl mb-6">
+                  {s.price}
+                </p>
+              )}
               {s.isForm ? (
                 <button
                   onClick={() => setShowForm(true)}
@@ -95,6 +104,8 @@ const ServicesSection = () => {
               ) : (
                 <a
                   href={s.ctaHref}
+                  target={s.external ? '_blank' : undefined}
+                  rel={s.external ? 'noopener noreferrer' : undefined}
                   className={`block w-full text-center font-heading font-semibold py-3 rounded-xl text-sm transition-all ${
                     s.highlight
                       ? 'bg-gradient-amber text-primary-foreground hover:opacity-90'

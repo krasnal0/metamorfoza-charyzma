@@ -1,13 +1,7 @@
 import { motion } from 'framer-motion';
-import t1 from '@/assets/transformation-1.jpg';
-import t2 from '@/assets/transformation-2.jpg';
-import t3 from '@/assets/transformation-3.jpg';
-
-const transformations = [
-  { image: t1, name: 'Kamil', result: '-15kg w 4 miesiące', detail: 'Z "dad bod" do sixpacka' },
-  { image: t2, name: 'Ania', result: '-12kg + siła', detail: 'Pierwsza osoba z wynikiem 100kg w przysiadzie' },
-  { image: t3, name: 'Marek', result: '300kg w martwym ciągu', detail: 'Marzenie z liceum spełnione po 30-tce' },
-];
+import tAleksandra from '@/assets/transformation-aleksandra.png';
+import tDominik from '@/assets/transformation-dominik.png';
+import tKuba from '@/assets/transformation-kuba.png';
 
 const TransformationsSection = () => {
   return (
@@ -25,27 +19,60 @@ const TransformationsSection = () => {
           <p className="text-muted-foreground">Nie obietnice. Efekty.</p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {transformations.map((t, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="group relative rounded-2xl overflow-hidden border border-border hover:border-primary/40 transition-colors"
-            >
-              <img src={t.image} alt={`Przemiana ${t.name}`} loading="lazy" width={640} height={800} className="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <span className="inline-block bg-gradient-amber text-primary-foreground px-3 py-1 rounded-full font-heading font-bold text-sm mb-2">
-                  {t.result}
-                </span>
-                <h3 className="font-heading font-bold text-lg text-foreground">{t.name}</h3>
-                <p className="text-sm text-muted-foreground">{t.detail}</p>
-              </div>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto items-end">
+          {/* Left - Dominik */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0 }}
+            className="group relative rounded-2xl overflow-hidden border border-border hover:border-primary/40 transition-colors"
+          >
+            <img src={tDominik} alt="Przemiana Dominik" loading="lazy" className="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <span className="inline-block bg-gradient-amber text-primary-foreground px-3 py-1 rounded-full font-heading font-bold text-sm mb-2">
+                +15 kg w 2 lata
+              </span>
+              <h3 className="font-heading font-bold text-lg text-foreground">Dominik</h3>
+            </div>
+          </motion.div>
+
+          {/* Center - Aleksandra (largest) */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 }}
+            className="group relative rounded-2xl overflow-hidden border border-primary/30 hover:border-primary/50 transition-colors shadow-glow md:scale-105"
+          >
+            <img src={tAleksandra} alt="Przemiana Aleksandra" loading="lazy" className="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <span className="inline-block bg-gradient-amber text-primary-foreground px-3 py-1 rounded-full font-heading font-bold text-sm mb-2">
+                -3 kg w 6 miesięcy
+              </span>
+              <h3 className="font-heading font-bold text-lg text-foreground">Aleksandra</h3>
+            </div>
+          </motion.div>
+
+          {/* Right - Kuba */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="group relative rounded-2xl overflow-hidden border border-border hover:border-primary/40 transition-colors"
+          >
+            <img src={tKuba} alt="Przemiana Kuba" loading="lazy" className="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <span className="inline-block bg-gradient-amber text-primary-foreground px-3 py-1 rounded-full font-heading font-bold text-sm mb-2">
+                +5 kg w 3 miesiące
+              </span>
+              <h3 className="font-heading font-bold text-lg text-foreground">Kuba</h3>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
