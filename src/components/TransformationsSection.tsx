@@ -34,7 +34,7 @@ const TransformationsSection = () => {
               <span className="inline-block bg-gradient-amber text-primary-foreground px-3 py-1 rounded-full font-heading font-bold text-sm mb-2">
                 +15 kg w 2 lata
               </span>
-              <h3 className="font-heading font-bold text-lg text-foreground">Dominik</h3>
+              <h3 className="font-heading font-bold text-lg text-foreground">Kuba</h3>
             </div>
           </motion.div>
 
