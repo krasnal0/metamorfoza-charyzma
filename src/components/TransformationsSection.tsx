@@ -68,9 +68,9 @@ const TransformationsSection = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6">
               <span className="inline-block bg-gradient-amber text-primary-foreground px-3 py-1 rounded-full font-heading font-bold text-sm mb-2">
-                +5 kg w 3 miesiące
+                +15 kg w 2 lata
               </span>
-              <h3 className="font-heading font-bold text-lg text-foreground">Dominik</h3>
+              <h3 className="font-heading font-bold text-lg text-foreground">Kuba</h3>
             </div>
           </motion.div>
         </div>

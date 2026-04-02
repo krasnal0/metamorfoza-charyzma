@@ -34,8 +34,9 @@ const services = [
     features: ['Dostępność 24/7', 'Wsparcie techniki', 'Analiza progresu', 'Darmowy plan treningowy'],
     price: '400 zł',
     cta: 'Umów rozmowę',
-    ctaHref: 'https://calendly.com/d-owczarek2007/30min',
-    external: true,
+    cta: 'Wypełnij formularz',
+    isForm: true,
+    formSource: 'coaching',
     highlight: false,
   },
 ];
