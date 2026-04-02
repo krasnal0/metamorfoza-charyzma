@@ -5,12 +5,14 @@ import cert1 from '@/assets/certyfikat-1.png';
 import cert2 from '@/assets/certyfikat-2.png';
 import cert3 from '@/assets/certyfikat-3.png';
 import cert4 from '@/assets/certyfikat-4.png';
+import cert5 from '@/assets/certyfikat-5.png';
 
 const certificates = [
   { image: cert1, title: 'Certyfikat – Knowledge & Perception of Personal Training (REPs Polska)' },
   { image: cert2, title: 'Certyfikat – Anatomy & Physiology (REPs Polska)' },
   { image: cert3, title: 'Certyfikat – Układanie planu treningowego cz. 1 (PLTP)' },
   { image: cert4, title: 'Certyfikat – Układanie planu treningowego cz. 2 (PLTP)' },
+   { image: cert4, title: 'Certyfikat – Układanie planu treningowego cz. 2 (PLTP)' },
 ];
 
 const CertificatesSection = () => {
