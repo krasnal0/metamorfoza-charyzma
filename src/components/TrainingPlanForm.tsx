@@ -17,10 +17,19 @@ const TrainingPlanForm = ({ onClose, source = 'plan' }: Props) => {
 
   const canSubmit = !!name.trim() && !!phone.trim();
 
-  const handleSubmit = () => {
-    addLead({ name, email, phone, goal: '', weight: '', height: '', equipment: '', source });
-    setSubmitted(true);
-    toast({ title: '✅ Formularz wysłany!', description: 'Odezwę się w ciągu 24h.' });
+  const handleSubmit = async () => {
+    try {
+      await fetch('https://formspree.io/f/xreookjp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, source }),
+      });
+      addLead({ name, email, phone, goal: '', weight: '', height: '', equipment: '', source });
+      setSubmitted(true);
+      toast({ title: '✅ Formularz wysłany!', description: 'Odezwę się w ciągu 24h.' });
+    } catch {
+      toast({ title: '❌ Błąd', description: 'Nie udało się wysłać formularza. Spróbuj ponownie.' });
+    }
   };
 
   return (
