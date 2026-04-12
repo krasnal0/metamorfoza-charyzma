@@ -53,16 +53,14 @@ const HeroSection = () => {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden md:flex justify-center"
+            className="flex justify-center"
           >
-            <div className="relative">
+            <div className="relative w-56 sm:w-72 md:w-80 lg:w-96 aspect-[2/3]">
               <div className="absolute -inset-4 bg-primary/20 rounded-3xl blur-2xl" />
               <img
                 src={dominikImg}
-                alt="Dominik Owczarek – Trener Personalny"
-                className="relative w-80 lg:w-96 rounded-2xl object-cover shadow-2xl"
-                width={400}
-                height={600}
+                alt="Trener Personalny Żory Dominik - trening na siłowni"
+                className="relative w-full h-full rounded-2xl object-cover object-top shadow-2xl"
               />
             </div>
           </motion.div>
