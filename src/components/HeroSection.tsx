@@ -9,11 +9,30 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/40" />
 
       <div className="relative container mx-auto px-4 pt-24 pb-16">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+          {/* Photo - shows first on mobile, right column on desktop */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex justify-center md:order-last"
+          >
+            <div className="relative w-48 sm:w-56 md:w-80 lg:w-96 aspect-[2/3]">
+              <div className="absolute -inset-4 bg-primary/20 rounded-3xl blur-2xl" />
+              <img
+                src={dominikImg}
+                alt="Trener Personalny Żory Dominik - trening na siłowni"
+                className="relative w-full h-full rounded-2xl object-cover object-top shadow-2xl ring-2 ring-primary/20"
+              />
+            </div>
+          </motion.div>
+
+          {/* Text content - left column */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="text-center md:text-left"
           >
             <h1 className="font-heading font-black text-4xl sm:text-5xl md:text-6xl leading-tight mb-4">
               <span className="text-foreground">Dominik</span>
@@ -25,12 +44,12 @@ const HeroSection = () => {
               Metamorfoza Twojego Ciała i Głowy
             </h2>
 
-            <p className="text-muted-foreground text-lg mb-4 max-w-lg">
+            <p className="text-muted-foreground text-lg mb-4 max-w-lg mx-auto md:mx-0">
               Trenuję na siłowni od ponad 3 lat.
               Pomagam budować sylwetkę, siłę i pewność siebie – bez kontuzji i bez ściemy.
             </p>
 
-            <div className="flex items-center gap-2 mb-8">
+            <div className="flex items-center justify-center md:justify-start gap-2 mb-8">
               <Trophy className="w-5 h-5 text-primary" />
               <span className="text-primary font-semibold text-sm">
                 🏆 2 miejsce w wyciskaniu na klatkę (PLTRAW)
@@ -47,22 +66,6 @@ const HeroSection = () => {
               Zapisz się na darmowy trening
               <ArrowRight className="w-5 h-5" />
             </motion.a>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex justify-center"
-          >
-            <div className="relative w-56 sm:w-72 md:w-80 lg:w-96 aspect-[2/3]">
-              <div className="absolute -inset-4 bg-primary/20 rounded-3xl blur-2xl" />
-              <img
-                src={dominikImg}
-                alt="Trener Personalny Żory Dominik - trening na siłowni"
-                className="relative w-full h-full rounded-2xl object-cover object-top shadow-2xl"
-              />
-            </div>
           </motion.div>
         </div>
       </div>
