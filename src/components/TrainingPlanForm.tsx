@@ -15,20 +15,25 @@ const TrainingPlanForm = ({ onClose, source = 'plan' }: Props) => {
   const [phone, setPhone] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const canSubmit = !!name.trim() && !!phone.trim();
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
     try {
-      await fetch('https://formspree.io/f/xreookjp', {
+      const res = await fetch('https://formspree.io/f/xreookjp', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({ name, email, phone, source }),
       });
+      if (!res.ok) throw new Error('Network error');
       addLead({ name, email, phone, goal: '', weight: '', height: '', equipment: '', source });
       setSubmitted(true);
-      toast({ title: '✅ Formularz wysłany!', description: 'Odezwę się w ciągu 24h.' });
+      toast({ title: '✅ Wiadomość wysłana!', description: 'Odezwę się niebawem.' });
     } catch {
       toast({ title: '❌ Błąd', description: 'Nie udało się wysłać formularza. Spróbuj ponownie.' });
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -47,30 +52,30 @@ const TrainingPlanForm = ({ onClose, source = 'plan' }: Props) => {
           <div className="text-center py-8">
             <CheckCircle2 className="w-16 h-16 text-accent mx-auto mb-4" />
             <h3 className="font-heading font-bold text-2xl text-foreground mb-2">Gotowe!</h3>
-            <p className="text-muted-foreground mb-6">Odezwę się w ciągu 24h.</p>
+            <p className="text-muted-foreground mb-6">Wiadomość wysłana! Odezwę się niebawem.</p>
             <button onClick={onClose} className="bg-gradient-amber text-primary-foreground px-6 py-3 rounded-xl font-heading font-semibold">
               Zamknij
             </button>
           </div>
         ) : (
-          <div>
+          <form onSubmit={handleSubmit} method="POST" action="https://formspree.io/f/xreookjp">
             <h3 className="font-heading font-bold text-xl text-foreground mb-2">
               {source === 'coaching' ? 'Coaching Online' : 'Plan Treningowy'}
             </h3>
             <p className="text-sm text-muted-foreground mb-6">Zostaw dane, odezwę się w ciągu 24h.</p>
             <div className="space-y-4">
-              <input value={name} onChange={e => setName(e.target.value)} placeholder="Imię" className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-foreground text-sm focus:outline-none focus:border-primary" />
-              <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email (opcjonalnie)" className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-foreground text-sm focus:outline-none focus:border-primary" />
-              <input value={phone} onChange={e => setPhone(e.target.value)} placeholder="Numer telefonu" className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-foreground text-sm focus:outline-none focus:border-primary" />
+              <input name="name" required value={name} onChange={e => setName(e.target.value)} placeholder="Imię" className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-foreground text-sm focus:outline-none focus:border-primary" />
+              <input name="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email (opcjonalnie)" className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-foreground text-sm focus:outline-none focus:border-primary" />
+              <input name="phone" required value={phone} onChange={e => setPhone(e.target.value)} placeholder="Numer telefonu" className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-foreground text-sm focus:outline-none focus:border-primary" />
             </div>
             <button
-              onClick={handleSubmit}
-              disabled={!canSubmit}
+              type="submit"
+              disabled={submitting}
               className="w-full mt-6 flex items-center justify-center gap-2 bg-gradient-amber text-primary-foreground px-6 py-3 rounded-xl font-heading font-semibold text-sm disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Wyślij <CheckCircle2 className="w-4 h-4" />
+              {submitting ? 'Wysyłanie...' : 'Wyślij'} <CheckCircle2 className="w-4 h-4" />
             </button>
-          </div>
+          </form>
         )}
       </motion.div>
     </div>
