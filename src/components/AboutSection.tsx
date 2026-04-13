@@ -5,6 +5,7 @@ const benefits = [
   'zbudować sylwetkę',
   'pozbyć się bólu pleców',
   'wyjść ze stagnacji',
+  'schudnąć',
 ];
 
 const AboutSection = () => {
