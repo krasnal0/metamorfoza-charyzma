@@ -28,9 +28,6 @@ const ProblemSection = () => {
           <h2 className="font-heading font-black text-3xl md:text-5xl text-foreground mb-4">
             Znasz to <span className="text-primary">uczucie?</span>
           </h2>
-          <p className="text-muted-foreground max-w-lg mx-auto">
-            Większość osób trenuje źle albo w ogóle. Efekt? Frustracja i zero wyników.
-          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">

@@ -50,7 +50,7 @@ const TransformationsSection = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6">
               <span className="inline-block bg-gradient-amber text-primary-foreground px-3 py-1 rounded-full font-heading font-bold text-sm mb-2">
-                -3 kg w 6 miesięcy
+                -3 kg w 6 miesięcy + Rekompozycja
               </span>
               <h3 className="font-heading font-bold text-lg text-foreground">Aleksandra</h3>
             </div>
