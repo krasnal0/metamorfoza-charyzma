@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Dumbbell } from 'lucide-react';
 
 const navItems = [
-  { label: 'O mnie', href: '#about' },
-  { label: 'Treningi ze mną', href: '#services' },
+  { label: 'O mnie', href: '#hero' },
+  { label: 'Treningi ze mną', href: '#about' },
   { label: 'Przemiany', href: '#transformations' },
   { label: 'Usługi', href: '#services' },
   { label: 'Kontakt', href: '#booking' },
