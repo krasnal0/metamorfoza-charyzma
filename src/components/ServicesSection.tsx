@@ -33,7 +33,7 @@ const services = [
     description: 'Pełne prowadzenie online — treningi, dieta, ewaluacja.',
     features: ['Dostępność 24/7', 'Wsparcie techniki', 'Analiza progresu', 'Darmowy plan treningowy'],
     price: '400 zł',
-    cta: 'Wypełnij formularz',
+    cta: 'Wypełnij ankietę',
     isForm: true,
     formSource: 'coaching',
     highlight: false,
