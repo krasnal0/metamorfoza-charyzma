@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import tAleksandra from '@/assets/transformation-aleksandra.png';
 import tDominik from '@/assets/transformation-dominik.png';
 import tKuba from '@/assets/transformation-kuba.png';
+import tGabriel from '@/assets/transformation-gabriel.png';
 
 const TransformationsSection = () => {
   return (
@@ -28,13 +29,13 @@ const TransformationsSection = () => {
             transition={{ delay: 0 }}
             className="group relative rounded-2xl overflow-hidden border border-border hover:border-primary/40 transition-colors"
           >
-            <img src={tDominik} alt="Przemiana Kuba - trening personalny Żory" loading="lazy" className="w-full aspect-[3/4] object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+            <img src={tGabriel} alt="Przemiana Gabriel - trening personalny Żory" loading="lazy" className="w-full aspect-[3/4] object-cover object-top group-hover:scale-105 transition-transform duration-500" />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6">
               <span className="inline-block bg-gradient-amber text-primary-foreground px-3 py-1 rounded-full font-heading font-bold text-sm mb-2">
-                +5 kg w 3 miesiące
+                +10kg w 8 miesięcy
               </span>
-              <h3 className="font-heading font-bold text-lg text-foreground">Kuba</h3>
+              <h3 className="font-heading font-bold text-lg text-foreground">Gabriel</h3>
             </div>
           </motion.div>
 
