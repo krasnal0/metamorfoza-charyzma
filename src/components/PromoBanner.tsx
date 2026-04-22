@@ -1,66 +1,11 @@
-import { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
-
-const STORAGE_KEY = 'promo_banner_end';
-const DISMISSED_KEY = 'promo_banner_dismissed';
-const DURATION_MS = 24 * 60 * 60 * 1000; // 24h
-
-const format = (ms: number) => {
-  const total = Math.max(0, Math.floor(ms / 1000));
-  const h = String(Math.floor(total / 3600)).padStart(2, '0');
-  const m = String(Math.floor((total % 3600) / 60)).padStart(2, '0');
-  const s = String(total % 60).padStart(2, '0');
-  return { h, m, s };
-};
+import { usePromoTimer, dismissPromo, formatRemaining } from '@/hooks/usePromoTimer';
 
 const PromoBanner = () => {
-  const [endTime, setEndTime] = useState<number | null>(null);
-  const [remaining, setRemaining] = useState(DURATION_MS);
-  const [visible, setVisible] = useState(false);
+  const { active, remaining } = usePromoTimer();
+  if (!active) return null;
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (localStorage.getItem(DISMISSED_KEY) === '1') return;
-
-    let end = Number(localStorage.getItem(STORAGE_KEY));
-    if (!end || Number.isNaN(end)) {
-      end = Date.now() + DURATION_MS;
-      localStorage.setItem(STORAGE_KEY, String(end));
-    }
-
-    if (end <= Date.now()) {
-      localStorage.setItem(DISMISSED_KEY, '1');
-      return;
-    }
-
-    setEndTime(end);
-    setRemaining(end - Date.now());
-    setVisible(true);
-  }, []);
-
-  useEffect(() => {
-    if (!visible || endTime == null) return;
-    const id = setInterval(() => {
-      const left = endTime - Date.now();
-      if (left <= 0) {
-        localStorage.setItem(DISMISSED_KEY, '1');
-        setVisible(false);
-        clearInterval(id);
-      } else {
-        setRemaining(left);
-      }
-    }, 1000);
-    return () => clearInterval(id);
-  }, [visible, endTime]);
-
-  const handleClose = () => {
-    localStorage.setItem(DISMISSED_KEY, '1');
-    setVisible(false);
-  };
-
-  if (!visible) return null;
-
-  const { h, m, s } = format(remaining);
+  const { h, m, s } = formatRemaining(remaining);
 
   return (
     <div className="sticky top-0 left-0 right-0 z-[60] bg-gradient-to-r from-red-600 to-orange-500 text-white shadow-lg">
@@ -74,7 +19,7 @@ const PromoBanner = () => {
           </span>
         </div>
         <button
-          onClick={handleClose}
+          onClick={dismissPromo}
           aria-label="Zamknij baner promocyjny"
           className="shrink-0 p-1 rounded hover:bg-white/20 transition-colors"
         >

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Dumbbell, FileText, Monitor, CheckCircle2 } from 'lucide-react';
 import TrainingPlanForm from './TrainingPlanForm';
+import { usePromoTimer } from '@/hooks/usePromoTimer';
 
 const services = [
   {
@@ -21,7 +22,7 @@ const services = [
     subtitle: 'Spersonalizowany pod Ciebie',
     description: 'Kompletny plan treningowy dopasowany do Twojego sprzętu, celów i poziomu.',
     features: ['Ankieta dopasowująca', 'Plan na 12 tygodni'],
-    price: '100 zł',
+    price: 100,
     cta: 'Wypełnij ankietę',
     isForm: true,
     highlight: false,
@@ -32,7 +33,7 @@ const services = [
     subtitle: 'Trenuj z dowolnego miejsca',
     description: 'Pełne prowadzenie online — treningi, dieta, ewaluacja.',
     features: ['Dostępność 24/7', 'Wsparcie techniki', 'Analiza progresu', 'Darmowy plan treningowy'],
-    price: '400 zł',
+    price: 400,
     cta: 'Wypełnij ankietę',
     isForm: true,
     formSource: 'coaching',
@@ -43,6 +44,7 @@ const services = [
 const ServicesSection = () => {
   const [formSource, setFormSource] = useState<'plan' | 'coaching'>('plan');
   const [showForm, setShowForm] = useState(false);
+  const { active: promoActive } = usePromoTimer();
 
   return (
     <section id="services" className="py-20 bg-background">
@@ -90,10 +92,16 @@ const ServicesSection = () => {
                   </div>
                 ))}
               </div>
-              {'price' in s && s.price && (
-                <p className="text-primary font-heading font-bold text-xl mb-6">
-                  {s.price}
-                </p>
+              {'price' in s && typeof s.price === 'number' && (
+                promoActive ? (
+                  <div className="flex items-center gap-2 flex-wrap mb-6">
+                    <span className="text-muted-foreground line-through text-base">{s.price} zł</span>
+                    <span className="text-primary font-heading font-bold text-2xl">{Math.round(s.price * 0.8)} zł</span>
+                    <span className="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded">-20%</span>
+                  </div>
+                ) : (
+                  <p className="text-primary font-heading font-bold text-xl mb-6">{s.price} zł</p>
+                )
               )}
               {s.isForm ? (
                 <button
