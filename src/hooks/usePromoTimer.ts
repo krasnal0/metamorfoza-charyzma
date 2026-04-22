@@ -1,35 +1,29 @@
 import { useEffect, useState } from 'react';
 
-const STORAGE_KEY = 'promo_banner_end';
+// Fixed deadline: April 23, 2026 at 20:00 local time
+const DEADLINE = new Date(2026, 3, 23, 20, 0, 0, 0).getTime();
 const DISMISSED_KEY = 'promo_banner_dismissed';
-const DURATION_MS = 24 * 60 * 60 * 1000;
 
 export const PROMO_EVENT = 'promo:changed';
 
 export type PromoState = {
   active: boolean;
   remaining: number;
-  endTime: number | null;
+  endTime: number;
 };
 
 const readState = (): PromoState => {
   if (typeof window === 'undefined') {
-    return { active: false, remaining: 0, endTime: null };
+    return { active: false, remaining: 0, endTime: DEADLINE };
+  }
+  const remaining = DEADLINE - Date.now();
+  if (remaining <= 0) {
+    return { active: false, remaining: 0, endTime: DEADLINE };
   }
   if (localStorage.getItem(DISMISSED_KEY) === '1') {
-    return { active: false, remaining: 0, endTime: null };
+    return { active: false, remaining, endTime: DEADLINE };
   }
-  let end = Number(localStorage.getItem(STORAGE_KEY));
-  if (!end || Number.isNaN(end)) {
-    end = Date.now() + DURATION_MS;
-    localStorage.setItem(STORAGE_KEY, String(end));
-  }
-  const remaining = end - Date.now();
-  if (remaining <= 0) {
-    localStorage.setItem(DISMISSED_KEY, '1');
-    return { active: false, remaining: 0, endTime: end };
-  }
-  return { active: true, remaining, endTime: end };
+  return { active: true, remaining, endTime: DEADLINE };
 };
 
 export const dismissPromo = () => {
@@ -41,20 +35,16 @@ export const usePromoTimer = (): PromoState => {
   const [state, setState] = useState<PromoState>(() => readState());
 
   useEffect(() => {
-    if (!state.active || !state.endTime) return;
     const id = setInterval(() => {
-      const left = (state.endTime as number) - Date.now();
-      if (left <= 0) {
-        localStorage.setItem(DISMISSED_KEY, '1');
-        setState({ active: false, remaining: 0, endTime: state.endTime });
+      const next = readState();
+      setState(next);
+      if (!next.active && next.remaining <= 0) {
         window.dispatchEvent(new Event(PROMO_EVENT));
         clearInterval(id);
-      } else {
-        setState((s) => ({ ...s, remaining: left }));
       }
     }, 1000);
     return () => clearInterval(id);
-  }, [state.active, state.endTime]);
+  }, []);
 
   useEffect(() => {
     const refresh = () => setState(readState());
